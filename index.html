@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مغسلة الجبر</title>
+    <!-- إضافة Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* إعدادات عامة */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow-x: hidden;
+            scroll-behavior: smooth; /* تفعيل التمرير السلس */
+            background-image: url('https://www2.0zz0.com/2025/02/05/15/171562033.png'); /* إضافة الصورة كخلفية */
+            background-size: cover; /* تغطية كامل الصفحة */
+            background-position: center; /* توسيط الصورة */
+            background-repeat: no-repeat; /* منع تكرار الصورة */
+            color: #fff; /* لون النص أبيض ليكون واضحًا على الخلفية */
+            animation: wave-effect 10s infinite linear; /* تأثير الحركة المموجة */
+        }
+
+        /* تأثير الحركة المموجة مع تغيير الألوان */
+        @keyframes wave-effect {
+            0% {
+                background-position: 0% 50%;
+                filter: hue-rotate(0deg); /* تغيير الألوان بشكل ديناميكي */
+            }
+            50% {
+                background-position: 100% 50%;
+                filter: hue-rotate(180deg);
+            }
+            100% {
+                background-position: 0% 50%;
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        /* عنوان الصفحة */
+        h1 {
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        /* أزرار التنقل */
+        .nav-buttons {
+            display: flex;
+            gap: 20px; /* زيادة المسافة بين الأزرار */
+            margin-bottom: 20px;
+        }
+
+        .nav-buttons a {
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: none; /* تعطيل التأثير عند التحويم */
+        }
+
+        .nav-buttons a:active {
+            background-color: #0056b3; /* تغيير اللون فقط عند الضغط */
+        }
+
+        /* حاوية المحتوى */
+        .container {
+            background: rgba(0, 0, 0, 0.7); /* خلفية شفافة لتحسين الرؤية */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* قائمة الفيديوهات */
+        .video-list {
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .video-item {
+            background: rgba(0, 0, 0, 0.7); /* خلفية شفافة لتحسين الرؤية */
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: none; /* تعطيل التأثير عند التحويم */
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .video-item:hover {
+            background: rgba(0, 0, 0, 0.7); /* إبقاء الخلفية ثابتة */
+        }
+
+        /* ترتيب الأزرار بشكل أفقي */
+        .button-group {
+            display: flex;
+            gap: 20px; /* زيادة المسافة بين الأزرار */
+            margin-bottom: 10px;
+        }
+
+        .video-item button {
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: none; /* تعطيل التأثير عند التحويم */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px; /* مسافة بين النص والرمز */
+        }
+
+        .video-item button.play-btn {
+            background-color: #28a745; /* لون أخضر لزر العرض */
+        }
+
+        .video-item button.toggle-btn {
+            background-color: #ffc107; /* لون أصفر لزر الإيقاف/التشغيل */
+        }
+
+        .video-item button.remove-btn {
+            background-color: #dc3545; /* لون أحمر لزر الإزالة */
+        }
+
+        .video-item button.play-btn:active {
+            background-color: #1e7e34; /* تغيير اللون فقط عند الضغط */
+        }
+
+        .video-item button.toggle-btn:active {
+            background-color: #d39e00; /* تغيير اللون فقط عند الضغط */
+        }
+
+        .video-item button.remove-btn:active {
+            background-color: #bd2130; /* تغيير اللون فقط عند الضغط */
+        }
+
+        /* حقل عرض الرابط وزر النسخ */
+        .video-link-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .video-link-container input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            background: rgba(255, 255, 255, 0.8); /* خلفية شفافة لتحسين الرؤية */
+            color: #333; /* لون النص أسود */
+        }
+
+        .video-link-container button.copy-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: none; /* تعطيل التأثير عند التحويم */
+        }
+
+        .video-link-container button.copy-btn:active {
+            background-color: #0056b3; /* تغيير اللون فقط عند الضغط */
+        }
+
+        /* رسائل النظام */
+        .message {
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+        }
+
+        /* استجابة الصفحة للأجهزة المحمولة */
+        @media (max-width: 768px) {
+            body {
+                background-size: 150% auto; /* تصغير الصورة أكثر للهواتف */
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .button-group {
+                flex-direction: column; /* ترتيب الأزرار عموديًا على الهواتف */
+                gap: 10px;
+            }
+
+            .video-link-container {
+                flex-direction: column; /* ترتيب الحقل وزر النسخ عموديًا */
+                align-items: stretch;
+            }
+
+            .video-link-container input {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- أزرار التنقل -->
+    <div class="nav-buttons">
+        <a href="#upload">رفع محتوى</a>
+        <a href="#videos">سجل الفيديوهات</a>
+    </div>
+
+    <!-- قسم رفع المحتوى -->
+    <div class="container" id="upload">
+        <h1>نورت يا غالي</h1>
+        <input type="file" id="fileInput" accept="image/*, video/*">
+        <button onclick="shareContent()">مشاركة المحتوى</button>
+        <div class="preview" id="preview"></div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <!-- قسم سجل الفيديوهات -->
+    <div class="container" id="videos">
+        <h1>سجل الفيديوهات</h1>
+        <div class="video-list" id="videoList">
+            <h3>لا توجد فيديوهات مضافة حتى الآن.</h3>
+        </div>
+    </div>
+
+    <script>
+        // قائمة لتخزين الفيديوهات المضافة
+        let videoList = [];
+        let openWindows = []; // لتخزين النوافذ المفتوحة
+
+        function shareContent() {
+            const fileInput = document.getElementById('fileInput');
+            const message = document.getElementById('message');
+
+            if (fileInput.files.length === 0) {
+                message.textContent = 'يرجى اختيار ملف لمشاركته.';
+                message.style.color = 'red';
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const url = URL.createObjectURL(file);
+
+            // إضافة الفيديو إلى السجل
+            videoList.push({ name: file.name, url });
+            updateVideoList();
+
+            // تحديث الرسالة
+            message.textContent = 'تمت إضافة المحتوى بنجاح! يمكنك عرضه باستخدام زر "اعرض الآن".';
+            message.style.color = 'green';
+
+            // مسح قيمة حقل اختيار الملف
+            fileInput.value = ''; // إعادة تعيين الحقل إلى "No file chosen"
+        }
+
+        // تحديث قائمة الفيديوهات المعروضة
+        function updateVideoList() {
+            const videoListDiv = document.getElementById('videoList');
+            videoListDiv.innerHTML = ''; // Clear previous list
+            if (videoList.length === 0) {
+                videoListDiv.innerHTML = '<h3>لا توجد فيديوهات مضافة حتى الآن.</h3>';
+                return;
+            }
+            videoList.forEach((video, index) => {
+                const videoItem = document.createElement('div');
+                videoItem.className = 'video-item';
+
+                // اسم الفيديو
+                const videoName = document.createElement('span');
+                videoName.textContent = video.name;
+
+                // مجموعة الأزرار
+                const buttonGroup = document.createElement('div');
+                buttonGroup.className = 'button-group';
+
+                // زر "اعرض الآن" مع رمز الشاشة
+                const playButton = document.createElement('button');
+                playButton.innerHTML = '<i class="fas fa-desktop"></i> اعرض الآن';
+                playButton.className = 'play-btn'; // إضافة فئة خاصة للزر
+                playButton.onclick = () => openVideoInNewWindow(video.url, index);
+
+                // زر "إيقاف/تشغيل الفيديو" مع رمز التشغيل والإيقاف
+                const toggleButton = document.createElement('button');
+                toggleButton.innerHTML = '<i class="fas fa-play"></i> إيقاف'; // النص الافتراضي
+                toggleButton.className = 'toggle-btn'; // إضافة فئة خاصة للزر
+                toggleButton.dataset.paused = 'false'; // حالة الزر (true إذا كان متوقفًا)
+                toggleButton.dataset.index = index; // تخزين فهرس الفيديو
+                toggleButton.onclick = () => toggleVideoPlayback(toggleButton);
+
+                // زر "إزالة الفيديو" مع رمز سلة المهملات
+                const removeButton = document.createElement('button');
+                removeButton.innerHTML = '<i class="fas fa-trash"></i> إزالة';
+                removeButton.className = 'remove-btn'; // إضافة فئة خاصة للزر
+                removeButton.onclick = () => removeVideo(index);
+
+                // إضافة الأزرار إلى مجموعة الأزرار
+                buttonGroup.appendChild(playButton);
+                buttonGroup.appendChild(toggleButton);
+                buttonGroup.appendChild(removeButton);
+
+                // حقل عرض الرابط وزر النسخ
+                const linkContainer = document.createElement('div');
+                linkContainer.className = 'video-link-container';
+
+                const linkInput = document.createElement('input');
+                linkInput.type = 'text';
+                linkInput.value = video.url; // رابط الفيديو
+                linkInput.readOnly = true; // جعل الحقل للقراءة فقط
+
+                const copyButton = document.createElement('button');
+                copyButton.textContent = 'Copy';
+                copyButton.className = 'copy-btn';
+                copyButton.onclick = () => {
+                    linkInput.select(); // تحديد النص داخل الحقل
+                    document.execCommand('copy'); // نسخ النص إلى الحافظة
+                    alert('تم نسخ الرابط إلى الحافظة!');
+                };
+
+                linkContainer.appendChild(linkInput);
+                linkContainer.appendChild(copyButton);
+
+                // إضافة العناصر إلى العنصر الرئيسي
+                videoItem.appendChild(videoName);
+                videoItem.appendChild(buttonGroup);
+                videoItem.appendChild(linkContainer);
+                videoListDiv.appendChild(videoItem);
+            });
+        }
+
+        // فتح الفيديو في نافذة جديدة
+        function openVideoInNewWindow(url, index) {
+            // حساب أبعاد الشاشة
+            const screenWidth = screen.width;
+            const screenHeight = screen.height;
+
+            // فتح النافذة الجديدة بحجم الشاشة الكامل
+            const newWindow = window.open('', '_blank', `width=${screenWidth},height=${screenHeight},fullscreen=yes`);
+            newWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="ar" dir="rtl">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>عرض الفيديو</title>
+                    <style>
+                        body, html {
+                            margin: 0;
+                            padding: 0;
+                            width: 100%;
+                            height: 100%;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            background-color: #000;
+                        }
+                        video {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: contain;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <video autoplay muted loop controls playsinline>
+                        <source src="${url}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </body>
+                </html>
+            `);
+            newWindow.document.close();
+
+            // تخزين النافذة المفتوحة في القائمة
+            openWindows[index] = newWindow;
+        }
+
+        // تبديل حالة تشغيل الفيديو (إيقاف/تشغيل)
+        function toggleVideoPlayback(button) {
+            const index = button.dataset.index; // الحصول على فهرس الفيديو
+            const isPaused = button.dataset.paused === 'true'; // حالة الزر الحالية
+
+            // إذا كان الفيديو يعمل في نافذة جديدة
+            if (openWindows[index]) {
+                const videoElement = openWindows[index].document.querySelector('video');
+                if (videoElement) {
+                    if (isPaused) {
+                        videoElement.play(); // تشغيل الفيديو
+                        button.innerHTML = '<i class="fas fa-pause"></i> إيقاف'; // تغيير النص والرمز
+                        button.dataset.paused = 'false'; // تحديث حالة الزر
+                    } else {
+                        videoElement.pause(); // إيقاف الفيديو
+                        button.innerHTML = '<i class="fas fa-play"></i> تشغيل'; // تغيير النص والرمز
+                        button.dataset.paused = 'true'; // تحديث حالة الزر
+                    }
+                }
+            }
+        }
+
+        // إزالة الفيديو من القائمة
+        function removeVideo(index) {
+            // إغلاق النافذة المفتوحة لهذا الفيديو إن وجدت
+            if (openWindows[index]) {
+                openWindows[index].close(); // إغلاق النافذة
+                openWindows[index] = null; // إزالة النافذة من القائمة
+            }
+
+            // حذف الفيديو من القائمة
+            videoList.splice(index, 1);
+            updateVideoList(); // تحديث القائمة المعروضة
+        }
+    </script>
+</body>
+</html>
